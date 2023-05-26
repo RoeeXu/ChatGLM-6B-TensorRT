@@ -34,9 +34,9 @@ class Kernel(nn.Module):
         # Load TensorRT Engine
         with open(engine_path, 'rb') as f:
             self.engine_ = self.runtime_.deserialize_cuda_engine(f.read())
-        self.context_1_ = self.engine.create_execution_context()
+        self.context_1_ = self.engine_.create_execution_context()
         self.context_1_.set_optimization_profile_async(0, self.stream_1_.handle)
-        self.context_2_ = self.engine.create_execution_context()
+        self.context_2_ = self.engine_.create_execution_context()
         self.context_2_.set_optimization_profile_async(1, self.stream_2_.handle)
 
     def vertify_io_number(self):
